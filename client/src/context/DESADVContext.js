@@ -6,6 +6,8 @@ export const DESADVProvider = ({ children }) => {
   const [bhdata, setBhdata] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(250);
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const getDesadvData = async () => {
     try {
@@ -37,6 +39,29 @@ export const DESADVProvider = ({ children }) => {
       console.error("Error fetching data:", error);
     }
   };
+  const handleFileUpload = async (file) => {
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+      const response = await fetch("http://localhost:3000/api/upload-file", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (response.ok) {
+        setSuccessMessage("File uploaded successfully!");
+        setErrorMessage(""); // Clear any previous error message
+      } else {
+        setErrorMessage("Error uploading file. Please, try again");
+        setSuccessMessage(""); // Clear any previous success message
+      }
+    } catch (error) {
+      console.error("Error uploading file:", error);
+      setErrorMessage("Error uploading file. Please, try again");
+      setSuccessMessage(""); // Clear any previous success message
+    }
+  };
 
   useEffect(() => {
     getDesadvData();
@@ -55,6 +80,9 @@ export const DESADVProvider = ({ children }) => {
         totalPages,
         resetTable,
         fetchDesadvDataById,
+        handleFileUpload,
+        successMessage,
+        errorMessage,
       }}
     >
       {children}

@@ -12,7 +12,7 @@ function App() {
           <div className="w-64">
             <Sidebar />
           </div>
-          <div className="bg-gray-700 flex-grow">
+          <div className="bg-[#E9B384] w- flex-1">
             <Routes>
               <Route path="/" element={<Overview />} />
               <Route path="/details/:id" element={<Details />} />

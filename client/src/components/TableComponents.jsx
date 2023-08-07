@@ -13,8 +13,8 @@ const TableComponents = () => {
   };
 
   return (
-    <div className="flex justify-center flex-col p-12">
-      <table className="mt-8 text-center bg-[#455669] rounded-xl text-sm">
+    <div className="flex justify-center flex-col min-h-screen px-12">
+      <table className="text-center bg-[#a5a5a6] rounded-xl text-sm shadow-md">
         <thead>
           <tr>
             <td className="px-4 py-2">VAN ID</td>
@@ -32,12 +32,12 @@ const TableComponents = () => {
             return (
               <tr
                 key={el._id}
-                className="bg-[#b9b9b9] hover:bg-[#7c7c7c] cursor-pointer border-b-2 border-gray-500 last:border-none"
+                className="bg-[#F4F2DE] hover:bg-[#a5a5a6] cursor-pointer  last:border-none"
                 onClick={() => handleClick(el._id)}
               >
                 <td className="px-4 py-4 cursor-pointer">
-                  {el.van_id ? (
-                    el.van_id
+                  {el.supplier ? (
+                    el.supplier
                   ) : (
                     <p className="text-red-500">No Data</p>
                   )}
@@ -95,7 +95,7 @@ const TableComponents = () => {
       <div className="flex justify-between items-center mt-2">
         <button
           onClick={resetTable}
-          className="border-2 p-2 rounded-lg text-white text-lg hover:bg-gray-500 flex justify-center items-center gap-2"
+          className="border-2 shadow-sm p-2 rounded-lg text-white text-lg hover:bg-[#7C9D96] flex justify-center items-center gap-2"
         >
           <RxReset size={"25px"} />
           Reset Table

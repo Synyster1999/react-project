@@ -1,9 +1,12 @@
 const express = require("express");
 const { MongoClient } = require("mongodb");
 const cors = require("cors");
+const multer = require("multer");
+const upload = multer({ dest: "uploads/" });
 const { ObjectId } = require("mongodb");
 const {
   processFiles,
+  processFile,
   getPaginatedData,
   getTotalDocumentsCount,
 } = require("./node.js");
@@ -12,7 +15,6 @@ const app = express();
 const mongoURI = "mongodb://localhost:27017";
 const dbName = "desadv";
 
-// Middleware to parse incoming JSON data
 app.use(express.json());
 app.use(cors());
 
@@ -78,9 +80,28 @@ app.get("/api/desadv-data/:id", async (req, res) => {
   }
 });
 
-// Start the server and initiate the data processing
-const port = 3000; // You can use any available port
+app.post("/api/upload-file", upload.single("file"), async (req, res) => {
+  const filePath = req.file.path;
+
+  try {
+    const db = await initializeMongoDB();
+
+    await processFile(filePath, db);
+
+    res.json({
+      success: true,
+      message: "File uploaded and processed successfully",
+    });
+  } catch (err) {
+    console.error("Error processing file:", err);
+    res
+      .status(500)
+      .json({ error: "An error occurred while processing the file" });
+  }
+});
+
+const port = 3000;
 app.listen(port, async () => {
   console.log(`Server is running on http://localhost:${port}`);
-  await processFiles(); // Start the data processing
+  await processFiles();
 });

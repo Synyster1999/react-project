@@ -25,7 +25,7 @@ const Pagination = () => {
       <ul className="flex justify-center items-center gap-4">
         <li>
           <button
-            className="cursor-pointer hover:bg-gray-500 rounded-full"
+            className="cursor-pointer transition-transform hover:scale-110"
             onClick={prevPage}
           >
             <AiOutlineLeftCircle size={"38px"} color="white" />
@@ -34,7 +34,7 @@ const Pagination = () => {
         {page - 1 !== 0 ? (
           <li>
             <button
-              className="text-base font-semibold rounded-full hover:bg-gray-200 bg-gray-400 w-7 h-7 flex items-center justify-center"
+              className="text-base font-semibold rounded-full hover:bg-[#999999] bg-[#F4F2DE] w-7 h-7 flex items-center justify-center"
               onClick={prevPage}
             >
               {page - 1}
@@ -43,7 +43,7 @@ const Pagination = () => {
         ) : null}
         <li>
           <button
-            className="text-base font-semibold rounded-full bg-gray-200 w-7 h-7 flex items-center justify-center"
+            className="text-base font-semibold rounded-full bg-[#999999] text-white w-7 h-7 flex items-center justify-center"
             disabled
           >
             {page}
@@ -52,7 +52,7 @@ const Pagination = () => {
         {page + 1 !== totalPages && page !== totalPages ? (
           <li>
             <button
-              className="text-base font-semibold rounded-full hover:bg-gray-200 bg-gray-400 w-7 h-7 flex items-center justify-center"
+              className="text-base font-semibold rounded-full hover:bg-[#999999] bg-[#F4F2DE] w-7 h-7 flex items-center justify-center"
               onClick={nextPage}
             >
               {page + 1}
@@ -67,7 +67,7 @@ const Pagination = () => {
         {page !== totalPages ? (
           <li>
             <button
-              className="text-base font-semibold rounded-full hover:bg-gray-200 bg-gray-400 w-7 h-7 flex items-center justify-center"
+              className="text-base font-semibold rounded-full hover:bg-[#999999] bg-[#F4F2DE] w-7 h-7 flex items-center justify-center"
               onClick={() => setPage(totalPages)}
             >
               {totalPages}
@@ -76,7 +76,7 @@ const Pagination = () => {
         ) : null}
         <li>
           <button
-            className="cursor-pointer hover:bg-gray-500 rounded-full"
+            className="cursor-pointer transition-transform hover:scale-110"
             onClick={nextPage}
           >
             <AiOutlineRightCircle size={"38px"} color="white" />
